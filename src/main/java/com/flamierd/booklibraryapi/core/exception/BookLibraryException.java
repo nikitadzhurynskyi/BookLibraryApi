@@ -9,10 +9,9 @@ import org.springframework.http.HttpStatus;
 @Setter
 @Getter
 public class BookLibraryException extends RuntimeException {
-    private HttpStatus status;
-
     @Getter(AccessLevel.NONE)
     private final HttpStatus DEFAULT_HTTP_STATUS = HttpStatus.BAD_REQUEST;
+    private HttpStatus status;
 
 
     public BookLibraryException() {

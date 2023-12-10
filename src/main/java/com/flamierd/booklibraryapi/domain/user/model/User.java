@@ -2,8 +2,9 @@ package com.flamierd.booklibraryapi.domain.user.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
@@ -14,7 +15,9 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
+
 @Table(name = "users")
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class User implements UserDetails {
     @Id
@@ -36,9 +39,10 @@ public class User implements UserDetails {
     private Set<UserRole> authorities;
 
     @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
     @Override

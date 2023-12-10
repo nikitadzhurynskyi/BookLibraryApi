@@ -10,3 +10,11 @@ spring:
       ddl-auto: update
   liquibase:
     change-log: classpath:db/changelog/changelog.yml
+server:
+  port: ${SERVER_PORT}
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: true
+        max-age: P1D
