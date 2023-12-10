@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      author: flamierd
+      id: 1
+  - includeAll:
+      path: user
+      relativeToChangelogFile: true

@@ -1,0 +1,12 @@
+---
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  profiles:
+    active: dev #set prod in production
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  liquibase:
+    change-log: classpath:db/changelog/changelog.yml
