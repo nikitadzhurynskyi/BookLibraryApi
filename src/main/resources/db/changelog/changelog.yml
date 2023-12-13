@@ -2,6 +2,12 @@ databaseChangeLog:
   - changeSet:
       author: flamierd
       id: 1
-  - includeAll:
-      path: user
+  - include:
+      file: 01_create_user_tables.sql
+      relativeToChangelogFile: true
+  - include:
+      file: 02_insert_data_to_roles.sql
+      relativeToChangelogFile: true
+  - include:
+      file: 03_create_books_authors_genres_tables.sql
       relativeToChangelogFile: true
