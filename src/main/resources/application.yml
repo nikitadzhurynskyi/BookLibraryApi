@@ -10,3 +10,5 @@ spring:
       ddl-auto: update
   liquibase:
     change-log: classpath:db/changelog/changelog.yml
+server:
+  port: ${SERVER_PORT}
