@@ -2,6 +2,7 @@ package com.flamierd.booklibraryapi.domain.auth.web;
 
 import com.flamierd.booklibraryapi.core.web.model.MessageResponse;
 import com.flamierd.booklibraryapi.domain.auth.usecase.LoginUseCase;
+import com.flamierd.booklibraryapi.domain.auth.usecase.RefreshTokensUseCase;
 import com.flamierd.booklibraryapi.domain.auth.usecase.RegisterUseCase;
 import com.flamierd.booklibraryapi.domain.auth.web.model.JwtTokens;
 import com.flamierd.booklibraryapi.domain.auth.web.model.LoginRequest;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final RegisterUseCase registerUseCase;
     private final LoginUseCase loginUseCase;
+    private final RefreshTokensUseCase refreshTokensUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
@@ -31,6 +33,12 @@ public class AuthController {
     @PostMapping("/login")
     public JwtTokens login(@Valid @RequestBody LoginRequest loginRequest) {
         return loginUseCase.login(loginRequest);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/refresh")
+    public JwtTokens refresh(@RequestBody String refreshToken) {
+        return refreshTokensUseCase.refresh(refreshToken);
     }
 
     @GetMapping("/check")
