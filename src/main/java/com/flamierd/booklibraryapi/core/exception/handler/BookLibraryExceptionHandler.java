@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class BookLibraryExceptionHandler {
     @ExceptionHandler({BookLibraryException.class})
-    public ExceptionResponse handleBookLibraryException(BookLibraryException ex, HttpServletResponse resp) {
-        resp.setStatus(ex.getStatus().value());
+    public ExceptionResponse handleBookLibraryException(BookLibraryException ex, HttpServletResponse response) {
+        response.setStatus(ex.getStatus().value());
 
         return ExceptionResponse.builder()
                 .message(ex.getLocalizedMessage())
