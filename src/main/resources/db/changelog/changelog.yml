@@ -9,5 +9,5 @@ databaseChangeLog:
       file: 02_insert_data_to_roles.sql
       relativeToChangelogFile: true
   - include:
-      file: 03_create_books_authors_genres_tables.sql
+      file: 03_create_books_table.sql
       relativeToChangelogFile: true

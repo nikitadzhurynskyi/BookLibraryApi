@@ -9,10 +9,7 @@ import com.flamierd.booklibraryapi.domain.book.service.BookService;
 import com.flamierd.booklibraryapi.domain.book.web.model.CreateBookRequest;
 import com.flamierd.booklibraryapi.domain.book.web.model.UpdateBookRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.support.PageableUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
