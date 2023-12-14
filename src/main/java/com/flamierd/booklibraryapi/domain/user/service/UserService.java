@@ -2,6 +2,7 @@ package com.flamierd.booklibraryapi.domain.user.service;
 
 import com.flamierd.booklibraryapi.domain.user.dto.CreateUserDto;
 import com.flamierd.booklibraryapi.domain.user.model.User;
+import com.flamierd.booklibraryapi.domain.user.web.model.UpdateRoleRequest;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Optional;
@@ -15,4 +16,6 @@ public interface UserService extends UserDetailsService {
 
     @Override
     User loadUserByUsername(String email);
+
+    User updateUserRole(UpdateRoleRequest updateRoleRequest);
 }

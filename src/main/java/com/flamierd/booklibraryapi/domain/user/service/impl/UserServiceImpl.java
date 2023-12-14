@@ -7,6 +7,7 @@ import com.flamierd.booklibraryapi.domain.user.model.UserRole;
 import com.flamierd.booklibraryapi.domain.user.repository.UserRepository;
 import com.flamierd.booklibraryapi.domain.user.service.UserRoleService;
 import com.flamierd.booklibraryapi.domain.user.service.UserService;
+import com.flamierd.booklibraryapi.domain.user.web.model.UpdateRoleRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User loadUserByUsername(String email) {
         return findByEmailOrThrow(email);
+    }
+
+    @Override
+    public User updateUserRole(UpdateRoleRequest updateRoleRequest) {
+        User user = findByEmailOrThrow(updateRoleRequest.getEmail());
+
+        Set<UserRole> roles = user.getAuthorities();
+        roles.add(userRoleService.findByAuthorityOrThrow(updateRoleRequest.getRole()));
+        user.setAuthorities(roles);
+
+        return userRepository.save(user);
     }
 }

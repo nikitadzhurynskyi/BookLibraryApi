@@ -21,11 +21,9 @@ import java.io.IOException;
 @AllArgsConstructor
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
+    private static final String AUTHORIZATION_HEADER = "Authorization";
     private final JwtUtilsService jwtUtilsService;
     private final UserService userService;
-
-    private static final String AUTHORIZATION_HEADER = "Authorization";
-
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
