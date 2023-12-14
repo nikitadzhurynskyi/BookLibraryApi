@@ -28,4 +28,12 @@ public class Book {
 
     @ElementCollection
     private Set<String> authors;
+
+    public String[] toFlatArray() {
+        return new String[]{id.toString(),
+                title,
+                description,
+                String.join(",", genres),
+                String.join(",", authors)};
+    }
 }

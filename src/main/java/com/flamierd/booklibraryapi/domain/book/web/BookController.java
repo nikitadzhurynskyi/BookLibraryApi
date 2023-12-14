@@ -5,10 +5,13 @@ import com.flamierd.booklibraryapi.domain.book.model.Book;
 import com.flamierd.booklibraryapi.domain.book.service.BookService;
 import com.flamierd.booklibraryapi.domain.book.web.model.CreateBookRequest;
 import com.flamierd.booklibraryapi.domain.book.web.model.UpdateBookRequest;
+import com.opencsv.CSVWriter;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @AllArgsConstructor
@@ -39,6 +42,22 @@ public class BookController {
     @GetMapping("/{id}")
     public Book getById(@PathVariable Long id) {
         return bookService.findByIdOrThrow(id);
+    }
+
+    @GetMapping(value = "/download")
+    public void downloadBooks(HttpServletResponse response) throws IOException {
+        response.setContentType("text/csv");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=books.csv";
+        response.setHeader(headerKey, headerValue);
+
+        List<Book> books = bookService.findMany();
+        CSVWriter csvWriter = new CSVWriter(response.getWriter());
+
+        csvWriter.writeNext(new String[]{"Id", "Title", "Description", "Genres", "Authors"});
+        csvWriter.writeAll(books.stream().map(Book::toFlatArray).toList());
+        csvWriter.close();
     }
 
     @DeleteMapping("/{id}")
