@@ -19,8 +19,6 @@ public interface BookService {
 
     Optional<Book> findByTitle(String title);
 
-    Book findByTitleOrThrow(String title);
-
     List<Book> findMany();
 
     List<Book> findMany(Pageable pageable);

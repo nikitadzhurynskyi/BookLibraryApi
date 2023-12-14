@@ -6,6 +6,7 @@ import com.flamierd.booklibraryapi.domain.book.service.BookService;
 import com.flamierd.booklibraryapi.domain.book.web.model.CreateBookRequest;
 import com.flamierd.booklibraryapi.domain.book.web.model.UpdateBookRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,11 @@ public class BookController {
     }
 
     @GetMapping
-    public List<Book> getMany() {
+    public List<Book> getMany(@RequestParam(name = "page", defaultValue = "0", required = false) Integer pageNumber,
+                              @RequestParam(name = "page_size", required = false) Integer pageSize) {
+        if (pageSize != null && pageSize > 0) {
+            return bookService.findMany(PageRequest.of(pageNumber, pageSize));
+        }
         return bookService.findMany();
     }
 

@@ -26,7 +26,6 @@ public class Book {
     @ElementCollection
     private Set<String> genres;
 
-
     @ElementCollection
     private Set<String> authors;
 }
