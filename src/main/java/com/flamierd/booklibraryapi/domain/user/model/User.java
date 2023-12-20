@@ -1,5 +1,6 @@
 package com.flamierd.booklibraryapi.domain.user.model;
 
+import com.flamierd.booklibraryapi.domain.book.model.Book;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -15,7 +17,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
 @Entity
@@ -37,6 +38,15 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role")
     )
     private Set<UserRole> authorities;
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_books",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private List<Book> favoriteBooks;
 
     @CreatedDate
     @Column(updatable = false)
