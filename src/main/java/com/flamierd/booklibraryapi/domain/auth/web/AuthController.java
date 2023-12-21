@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class AuthController {
     private final RegisterUseCase registerUseCase;
+
     private final LoginUseCase loginUseCase;
+
     private final RefreshTokensUseCase refreshTokensUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)

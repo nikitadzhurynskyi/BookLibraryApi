@@ -34,10 +34,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(CreateUserDto dto) {
-        Set<UserRole> authorities = dto.authorities() != null ? dto.authorities() : userRoleService.getDefaultUserRoles();
+        Set<UserRole> authorities = dto.getAuthorities() != null ? dto.getAuthorities() : userRoleService.getDefaultUserRoles();
         User user = User.builder()
-                .email(dto.email())
-                .password(dto.password())
+                .email(dto.getEmail())
+                .password(dto.getPassword())
                 .authorities(authorities)
                 .build();
         return userRepository.save(user);
