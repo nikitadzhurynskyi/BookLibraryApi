@@ -9,8 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-public class FavoriteUserBookResponse {
-    private Long id;
-
-    private String title;
+public class AddToFavoriteBookRequest {
+    private long bookId;
 }
+

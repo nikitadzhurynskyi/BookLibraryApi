@@ -3,6 +3,7 @@ package com.flamierd.booklibraryapi.domain.book.service;
 import com.flamierd.booklibraryapi.domain.book.model.Book;
 import com.flamierd.booklibraryapi.domain.book.web.model.CreateBookRequest;
 import com.flamierd.booklibraryapi.domain.book.web.model.UpdateBookRequest;
+import com.flamierd.booklibraryapi.domain.user.model.User;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -25,4 +26,7 @@ public interface BookService {
 
     void deleteById(Long id);
 
+    User addToFavorite(Long id, User user);
+
+    User removeFromFavorite(Long id, User user);
 }

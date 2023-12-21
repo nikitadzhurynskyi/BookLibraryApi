@@ -7,7 +7,6 @@ import com.flamierd.booklibraryapi.domain.user.model.User;
 import java.util.Date;
 
 public interface JwtUtilsService {
-
     JwtTokens generateTokens(User user);
 
     String extractEmail(String token, JwtTokenType tokenType);

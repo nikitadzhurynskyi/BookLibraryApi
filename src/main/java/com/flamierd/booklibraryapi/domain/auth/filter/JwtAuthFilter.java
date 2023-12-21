@@ -22,7 +22,9 @@ import java.io.IOException;
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
     private static final String AUTHORIZATION_HEADER = "Authorization";
+
     private final JwtUtilsService jwtUtilsService;
+
     private final UserService userService;
 
     @Override

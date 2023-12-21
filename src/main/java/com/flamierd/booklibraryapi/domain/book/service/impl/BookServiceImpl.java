@@ -8,13 +8,12 @@ import com.flamierd.booklibraryapi.domain.book.repository.BookRepository;
 import com.flamierd.booklibraryapi.domain.book.service.BookService;
 import com.flamierd.booklibraryapi.domain.book.web.model.CreateBookRequest;
 import com.flamierd.booklibraryapi.domain.book.web.model.UpdateBookRequest;
-import com.opencsv.CSVWriter;
+import com.flamierd.booklibraryapi.domain.user.model.User;
+import com.flamierd.booklibraryapi.domain.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +21,8 @@ import java.util.Optional;
 @Service
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
+
+    private final UserRepository userRepository;
 
     private final CreateBookRequestToBookDtoMapper createBookRequestToBookDtoMapper;
 
@@ -72,6 +73,21 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteById(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    @Override
+    public User addToFavorite(Long id, User user) {
+        Book book = findByIdOrThrow(id);
+        user.getFavoriteBooks().add(book);
+        user.setFavoriteBooks(user.getFavoriteBooks());
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User removeFromFavorite(Long id, User user) {
+        user.getFavoriteBooks().removeIf(book -> id.equals(book.getId()));
+        user.setFavoriteBooks(user.getFavoriteBooks());
+        return userRepository.save(user);
     }
 
     private void updateBookWithDto(Book book, BookDto dto) {

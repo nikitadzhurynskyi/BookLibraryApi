@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RefreshTokensUseCaseFacade implements RefreshTokensUseCase {
     private final JwtUtilsService jwtUtilsService;
+
     private final UserService userService;
 
     @Override

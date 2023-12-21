@@ -16,10 +16,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class RegisterUseCaseFacade implements RegisterUseCase {
     private final AuthService authService;
-    private final UserService userService;
-    private final RegisterRequestToCreateUserDtoMapper registerRequestToCreateUserDtoMapper;
-    private final UserToUserResponseMapper userToUserResponseMapper;
 
+    private final UserService userService;
+
+    private final RegisterRequestToCreateUserDtoMapper registerRequestToCreateUserDtoMapper;
+
+    private final UserToUserResponseMapper userToUserResponseMapper;
 
     @Override
     public UserResponse register(RegisterRequest registerRequest) {
