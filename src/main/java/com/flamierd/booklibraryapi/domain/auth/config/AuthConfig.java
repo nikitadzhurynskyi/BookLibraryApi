@@ -36,6 +36,8 @@ public class AuthConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry ->
                         registry
+                                .requestMatchers( "/swagger-ui/**", "/v3/api-docs/**")
+                                .anonymous()
                                 .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/refresh", "/error")
                                 .permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/books", "/api/books/{id}")

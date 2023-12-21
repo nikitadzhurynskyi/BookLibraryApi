@@ -12,4 +12,3 @@ import lombok.Setter;
 public class AddToFavoriteBookRequest {
     private long bookId;
 }
-
