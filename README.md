@@ -1,1 +1,1 @@
-# Univercity practice project
+# University practice project
